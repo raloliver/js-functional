@@ -1,8 +1,8 @@
-import { handleStatus } from "../utils/helpers.js";
+import { handleStatus, log } from "../utils/helpers.js";
 
 document.querySelector('#bigBlueButton').onclick = () => {
     fetch('/notas')
         .then(handleStatus)
-        .then(items => console.log(items))
+        .then(log)
         .catch(console.error);
 };
