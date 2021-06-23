@@ -9,6 +9,8 @@ Um modulo em javascript é uma únidade de código confinada, e somente é acess
 
 > Functor é simplesmente algo mapeável, ou seja, que suporta a operação `map`.
 
+O `Array` é um Functor, pois permite realizar operações de mapeamento em seus itens, isto é, nos dados que possui.
+
 ### MAP
 
 ```
@@ -41,4 +43,4 @@ Retornando o total da soma dos números.
 
 ### FLATMAP
 
-Garante que os dados tenham apenas uma dimensão.
+Garante que os dados tenham apenas uma dimensão. No código usamos um exemplo de criação de um flatMap a partir de um reduce e adicionamos ao prototype do Array, pois qualquer modificação realizada no prototype é disponibilizada para todos os objetos daquele tipo, pois eles compartilham o mesmo prototype.
