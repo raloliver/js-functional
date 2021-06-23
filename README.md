@@ -7,6 +7,8 @@ Um modulo em javascript é uma únidade de código confinada, e somente é acess
 - é necessário colocar o .js ao final do arquivo na importação por conta da exigência para uso de módulos nativamente
 - no arquivo principal da SPA é necessário apenas importar o arquivo principal, e o sistema de módulos se encarrega de carregar os arquivos importados
 
+> Functor é simplesmente algo mapeável, ou seja, que suporta a operação `map`.
+
 ### MAP
 
 ```
@@ -36,3 +38,7 @@ const sum = numbers
 ```
 
 Retornando o total da soma dos números.
+
+### FLATMAP
+
+Garante que os dados tenham apenas uma dimensão.
