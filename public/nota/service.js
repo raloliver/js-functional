@@ -1,6 +1,6 @@
 import { handleStatus } from "../utils/util-helpers.js";
 import "../utils/list-helpers.js";
-import { compose, partialize } from "../utils/operators-helper.js";
+import { compose, partialize, pipe } from "../utils/operators-helper.js";
 
 const ENDPOINT = 'http://localhost:3000';
 
@@ -8,7 +8,7 @@ const ENDPOINT = 'http://localhost:3000';
 
 const getItems = list => list.$flatMap(item => item.itens);
 const getItemByCode = (code, items) => items.filter(item => item.codigo == code);
-const sumItemsTotal = items => items.reduce((total, item) => total + item.valor, 0);
+const sumItemsPrice = items => items.reduce((total, item) => total + item.valor, 0);
 
 /**
  * closure: capacidade que uma função tem de lembrar do contexto ao qual ela foi declarada
@@ -27,12 +27,12 @@ export const notasService = {
      * @return list of item if success and Promise.reject if error
      */
     getAll() {
-        return fetch(ENDPOINT + '/notas').then(handleStatus).catch((error) => Promise.reject('Not possible to fetch items!'));
+        return fetch(ENDPOINT + '/notas').then(handleStatus).catch((error) => Promise.reject(`Not possible to fetch items! ${error}`));
     },
 
     sumItems(code) {
         const filterItems = partialize(getItemByCode, code);
-        const sumItems = compose(sumItemsTotal, filterItems, getItems);
+        const sumItems = pipe(getItems, filterItems, sumItemsPrice);
         return this.getAll().then(sumItems);
     }
 }
