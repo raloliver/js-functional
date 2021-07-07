@@ -11,6 +11,18 @@ Um modulo em javascript é uma únidade de código confinada, e somente é acess
 
 O `Array` é um Functor, pois permite realizar operações de mapeamento em seus itens, isto é, nos dados que possui.
 
+### BIND
+
+Parse Application example.
+
+> Toda função pode implementar o método `bind` onde é possível substituir o `this` e receber valores default para parametros.
+
+```
+const divisible = (divider, number) => !(number % divider);
+
+const divisibleByTwo = divisible.bind(null, 2);
+```
+
 ### MAP
 
 ```
