@@ -1,6 +1,6 @@
 import { handleStatus } from "../utils/util-helpers.js";
 import "../utils/list-helpers.js";
-import { partialize } from "../utils/operators-helper.js";
+import { compose, partialize } from "../utils/operators-helper.js";
 
 const ENDPOINT = 'http://localhost:3000';
 
@@ -22,12 +22,17 @@ const sumItems = code => list => list
 
 export const notasService = {
 
+    /**
+     *
+     * @return list of item if success and Promise.reject if error
+     */
     getAll() {
-        return fetch(ENDPOINT + '/notas').then(handleStatus);
+        return fetch(ENDPOINT + '/notas').then(handleStatus).catch((error) => Promise.reject('Not possible to fetch items!'));
     },
 
     sumItems(code) {
         const filterItems = partialize(getItemByCode, code);
-        return this.getAll().then(items => sumItemsTotal(filterItems(getItems(items))));
+        const sumItems = compose(sumItemsTotal, filterItems, getItems);
+        return this.getAll().then(sumItems);
     }
 }
