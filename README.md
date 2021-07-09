@@ -11,6 +11,45 @@ Um modulo em javascript é uma únidade de código confinada, e somente é acess
 
 O `Array` é um Functor, pois permite realizar operações de mapeamento em seus itens, isto é, nos dados que possui.
 
+### REDUCE RIGHT
+
+Esse método aplica à uma função com um acumulador e cada valor do array (da direita para esquerda) é reduzido para um valor único.
+
+### POINT FREE FUNCTION
+
+A função em nenhum momento referência um parâmetro.
+
+### SINGLE RESPONSABILITY PRINCIPLE
+
+```
+const trim = text => text.trim();
+const toUpperCase = text => text.toUpperCase();
+const split = separator => text => text.split(separator);
+
+const words =
+  split(' ')(
+    toUpperCase(
+      trim(' Alura Cursos ')
+    )
+  );
+
+console.log(words);
+```
+
+A função split em sua essência precisa de pois parâmetros, mas para que seja possível realizar a composição ela deve receber um parâmetro apenas. Ela recebe o separador e internamente tenta operar com a variável text que sequer existe.
+
+### BIND
+
+Partial Application example.
+
+> Toda função pode implementar o método `bind` onde é possível substituir o `this` e receber valores default para parametros.
+
+```
+const divisible = (divider, number) => !(number % divider);
+
+const divisibleByTwo = divisible.bind(null, 2);
+```
+
 ### MAP
 
 ```
