@@ -21,3 +21,15 @@ export const compose = (...fns) => value =>
 */
 export const pipe = (...fns) => value =>
     fns.reduce((previousValue, fn) => fn(previousValue), value);
+
+/**
+* evitar realizar execuções desnecessárias
+* decrementamos o parametro times até que o mesmo seja maior que 0
+* e paramos a execução recursiva
+*
+* @param {*} times
+* @param {*} fn
+* @return {*} 
+*/
+export const takeUntil = (times, fn) => () => times-- > 0 && fn();
+

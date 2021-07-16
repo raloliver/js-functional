@@ -1,6 +1,6 @@
 import { handleStatus } from "../utils/util-helpers.js";
 import "../utils/list-helpers.js";
-import { compose, partialize, pipe } from "../utils/operators-helper.js";
+import { compose, partialize, pipe } from "../utils/operators-helpers.js";
 
 const ENDPOINT = 'http://localhost:3000';
 
