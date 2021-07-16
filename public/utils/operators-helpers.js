@@ -33,8 +33,6 @@ export const pipe = (...fns) => value =>
 */
 export const takeUntil = (times, fn) => () => times-- > 0 && fn();
 
-
-
 /**
 * mesmo sem nenhum timeout, o clear funciona
 * o setTimeOut retorna um number, o que nos permito para-lo programaticamente
