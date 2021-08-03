@@ -83,3 +83,44 @@ Retornando o total da soma dos números.
 ### FLATMAP
 
 Garante que os dados tenham apenas uma dimensão. No código usamos um exemplo de criação de um flatMap a partir de um reduce e adicionamos ao prototype do Array, pois qualquer modificação realizada no prototype é disponibilizada para todos os objetos daquele tipo, pois eles compartilham o mesmo prototype.
+
+### PROMISE
+
+- Nativamente não é possível implementar um mecanismo de timeout.
+- Promises não possuem nativamente um mecanismo de retry.
+- Uma Promise após resolvida ou rejeitada, não pode ser executada novamente.
+
+**Promise.race**: Em suma, estamos interessados no resultado da primeira promise resolvida, mas se algum erro acontecer antes de qualquer resultado válido, caímos dentro do catch.
+
+```
+const promise1 = new Promise((resolve, reject) =>
+    setTimeout(() => resolve('promise 1 resolvida'), 3000));
+
+const promise2 = new Promise((resolve, reject) =>
+    setTimeout(() => reject('promise 2 resolvida'), 1000));
+
+Promise.race([promise1, promise2]
+)
+.then(console.log)
+.catch(console.log);
+```
+
+**delay**: Entre cada nova tentativa será preciso realizar um pequeno delay e por este motivo foi criado esse mecanismo de delay que será utilizado entre chamadas de Promises.
+
+```
+export const delay = milliseconds => data
+    new Promise((resolve, reject) =>
+        setTimeout(() => resolve(data), milliseconds)
+    );
+```
+
+**retry** (recursivo): É importante lembrar que as chamadas recursivas terminarão quando a condição de um leave event for atendida. O leave event abaixo foi representado pela instrução if(counter < 0) return;.
+
+```
+const showCountDown = counter => {
+  if (counter < 0) return;
+  console.log(counter);
+  showCountDown(--counter);
+};
+showCountDown(3);
+```
