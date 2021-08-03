@@ -88,6 +88,7 @@ Garante que os dados tenham apenas uma dimensão. No código usamos um exemplo d
 
 - Nativamente não é possível implementar um mecanismo de timeout.
 - Promises não possuem nativamente um mecanismo de retry.
+- Uma Promise após resolvida ou rejeitada, não pode ser executada novamente.
 
 **Promise.race**: Em suma, estamos interessados no resultado da primeira promise resolvida, mas se algum erro acontecer antes de qualquer resultado válido, caímos dentro do catch.
 
@@ -111,4 +112,15 @@ export const delay = milliseconds => data
     new Promise((resolve, reject) =>
         setTimeout(() => resolve(data), milliseconds)
     );
+```
+
+**retry** (recursivo): É importante lembrar que as chamadas recursivas terminarão quando a condição de um leave event for atendida. O leave event abaixo foi representado pela instrução if(counter < 0) return;.
+
+```
+const showCountDown = counter => {
+  if (counter < 0) return;
+  console.log(counter);
+  showCountDown(--counter);
+};
+showCountDown(3);
 ```

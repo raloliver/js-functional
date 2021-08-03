@@ -10,3 +10,21 @@ export const timeoutPromise = (ms, promise) => {
 * @param {*} data
 */
 export const delay = ms => data => new Promise((resolve, reject) => setTimeout(() => resolve(data), ms))
+
+/**
+ * Necessário que o último argumento seja uma função que ao ser chamada, devolva uma promise, para cada tentativa termos uma nova promise.
+ * Dentro do catch de uma Promise é possível retornar outra Promise.
+ * 
+ * A função @delay é necessária para que exista um intervalo entre as tentativas.
+ * É necessário invocar a função @delay imediatamente pois a mesma, pois o resolve será executado apenas após a quantidade determinada de ms.
+ * 
+ * Recursividade: É importante lembrar que as chamadas recursivas terminarão quando a condição de um leave event for atendida.
+*/
+export const retry = (retries, ms, fn) =>
+    fn().catch(err => {
+        console.log(retries);
+        return delay(ms)().then(() =>
+            retries > 1
+                ? retry(--retries, ms, fn)
+                : Promise.reject(err));
+    })
