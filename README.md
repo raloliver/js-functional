@@ -83,3 +83,22 @@ Retornando o total da soma dos números.
 ### FLATMAP
 
 Garante que os dados tenham apenas uma dimensão. No código usamos um exemplo de criação de um flatMap a partir de um reduce e adicionamos ao prototype do Array, pois qualquer modificação realizada no prototype é disponibilizada para todos os objetos daquele tipo, pois eles compartilham o mesmo prototype.
+
+### PROMISE
+
+Nativamente não é possível implementar um mecanismo de timeout.
+
+**Promise.race**: Em suma, estamos interessados no resultado da primeira promise resolvida, mas se algum erro acontecer antes de qualquer resultado válido, caímos dentro do catch.
+
+```
+const promise1 = new Promise((resolve, reject) =>
+    setTimeout(() => resolve('promise 1 resolvida'), 3000));
+
+const promise2 = new Promise((resolve, reject) =>
+    setTimeout(() => reject('promise 2 resolvida'), 1000));
+
+Promise.race([promise1, promise2]
+)
+.then(console.log)
+.catch(console.log);
+```
