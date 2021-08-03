@@ -86,7 +86,8 @@ Garante que os dados tenham apenas uma dimensão. No código usamos um exemplo d
 
 ### PROMISE
 
-Nativamente não é possível implementar um mecanismo de timeout.
+- Nativamente não é possível implementar um mecanismo de timeout.
+- Promises não possuem nativamente um mecanismo de retry.
 
 **Promise.race**: Em suma, estamos interessados no resultado da primeira promise resolvida, mas se algum erro acontecer antes de qualquer resultado válido, caímos dentro do catch.
 
@@ -101,4 +102,13 @@ Promise.race([promise1, promise2]
 )
 .then(console.log)
 .catch(console.log);
+```
+
+**delay**: Entre cada nova tentativa será preciso realizar um pequeno delay e por este motivo foi criado esse mecanismo de delay que será utilizado entre chamadas de Promises.
+
+```
+export const delay = milliseconds => data
+    new Promise((resolve, reject) =>
+        setTimeout(() => resolve(data), milliseconds)
+    );
 ```
