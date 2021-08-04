@@ -8,10 +8,10 @@ export const EventEmitter = {
     on(event, listener) {
         //avoid memory leak
         if (!events.has(event)) {
-            event.set(event, []);
+            events.set(event, []);
         }
 
-        events.get(event).push()
+        events.get(event).push(listener)
     },
 
     emit(event, data) {
