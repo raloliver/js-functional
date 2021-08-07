@@ -20,6 +20,13 @@ export class IsNull {
         return IsNull.of(fn(this._value));
     }
 
+    /**
+     * Retorna o valor embrulhado pela mônada. Porém, se o método receber um valor, é este valor que será retornado caso a mônada embrulhe um valor.
+     *
+     * @param {*} value
+     * @return {*} 
+     * @memberof IsNull
+     */
     getValue(value) {
         if (this.isNothing()) {
             return value;
