@@ -124,3 +124,26 @@ const showCountDown = counter => {
 };
 showCountDown(3);
 ```
+
+### PUBLISHER AND SUBSCRIBER
+
+_subscribe_(topico): realiza a inscrição para um tópico. É possível haver um ou mais inscritos e todos eles serão notificados toda vez que houver uma publicação para este tópico.
+
+_publish_(topico, dado): notifica todos que estejam inscritos ao tópico passado como primeiro parâmetro. O segundo parâmetro é qualquer informação que queiramos fornecer para os inscritos.
+
+**Event Emitter (from NodeJS)**
+
+> `EventEmitter` implementa o pattern Publisher/Subscribe. Ele possui os métodos `emit` e `on` que equivalem respectivamente aos métodos `publish` e `subscribe`.
+
+A imlementação desse patter reduz o acoplamento do código. As classes envolvidas ficarão acopladas apenas com barramento de eventos (event bus).
+
+### Estrutura de dados Map
+
+- Através do método get obtermos o dado associado à chave passada como parâmetro para o método.
+- Adicionamos novas chaves/valores através do método set.
+
+### Nullable values
+
+`maybe monad`: faz um wrapper de um dado para evitar acesso ao dado quando o mesmo for null ou undefined. `monad` é um functor, porque quando temos um valor embrulhado por outro tipo não podemos aplicar uma função normalmente no valor. O Functor possui métodos especializados para interagir/modificar o valor.
+
+- Todo Functor possui a função `map` (no caso dessa aplicação, nomeamos de mapper, para não confundir com o map nativo da linguagem).
