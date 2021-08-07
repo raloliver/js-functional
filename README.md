@@ -141,3 +141,9 @@ A imlementação desse patter reduz o acoplamento do código. As classes envolvi
 
 - Através do método get obtermos o dado associado à chave passada como parâmetro para o método.
 - Adicionamos novas chaves/valores através do método set.
+
+### Nullable values
+
+`maybe monad`: faz um wrapper de um dado para evitar acesso ao dado quando o mesmo for null ou undefined. `monad` é um functor, porque quando temos um valor embrulhado por outro tipo não podemos aplicar uma função normalmente no valor. O Functor possui métodos especializados para interagir/modificar o valor.
+
+- Todo Functor possui a função `map` (no caso dessa aplicação, nomeamos de mapper, para não confundir com o map nativo da linguagem).
